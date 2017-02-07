@@ -1,0 +1,15 @@
+
+esquid:CallToDeprecatedMethod"6Remove this use of "createCriteria"; it is deprecated.(üş©8‰£Šœ™+
+X
+squid:S106E";Replace this usage of System.out or System.err by a logger.(Ñ”£Ë8ñÛîüœ+
+esquid:CallToDeprecatedMethod+"6Remove this use of "createCriteria"; it is deprecated.(üş©8´ùÉƒ›+
+isquid:CommentedOutCodeLineF"<This block of commented-out lines of code should be removed.(·àí©8’Š³·›+
+X
+squid:S106";Replace this usage of System.out or System.err by a logger.(ÂêŠö8üØ¿¶›+
+_squid:CallToDeprecatedMethod$"1Remove this use of "setString"; it is deprecated.(Û•Ú_8Ã»ß³š+
+jsquid:CallToDeprecatedMethod#"6Remove this use of "createSQLQuery"; it is deprecated.(¶Û¸Öıÿÿÿÿ8‰£Šœ™+
+asquid:CallToDeprecatedMethod#"-Remove this use of "Query"; it is deprecated.(¶Û¸Öıÿÿÿÿ8Ã»ß³š+
+]
+squid:S106?";Replace this usage of System.out or System.err by a logger.(úñÌïÿÿÿÿÿ8­æº´™+
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¾™Î„8™ŒÊƒ›+
+Zsquid:UselessImportCheck"/Remove this unused import 'com.dto.TestResult'.(¤Ó‹8­ö¤…+

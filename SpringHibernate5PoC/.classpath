@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Migration/jar/ojdbc-10.2.0.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Migration/jar/hibernate-commons-annotations-4.0.4.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Migration/jar/classmate-1.3.3.jar"/>
+	<classpathentry kind="lib" path="C:/Migration/jar/javaee-api-7.0.jar"/>
+	<classpathentry kind="lib" path="C:/Migration/jar/jboss-logging-3.3.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Migration/jar/hibernate-core-5.2.6.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Migration/jar/spring-core-4.3.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Migration/jar/spring-context-4.3.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Migration/jar/spring-jdbc-4.3.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Migration/jar/spring-orm-4.3.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Migration/jar/spring-tx-4.3.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Migration/jar/spring-beans-4.3.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Migration/jar/spring-aop-4.3.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Migration/jar/spring-expression-4.3.5.RELEASE.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

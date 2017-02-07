@@ -1,0 +1,8 @@
+
+{squid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Ñ ÜÑýÿÿÿÿ8Žù›”™+
+isquid:CommentedOutCodeLine*"<This block of commented-out lines of code should be removed.(ï®í×8¸ÝÍ²›+
+isquid:CommentedOutCodeLine2"<This block of commented-out lines of code should be removed.(ìçêÞ8Žù›”™+
+nsquid:CommentedOutCodeLine8"<This block of commented-out lines of code should be removed.(üŒï†ûÿÿÿÿ8Žù›”™+
+nsquid:CommentedOutCodeLine?"<This block of commented-out lines of code should be removed.(Ýè¿½ûÿÿÿÿ8Žù›”™+
+]squid:S1118":Add a private constructor to hide the implicit public one.(Í÷€üÿÿÿÿ8Žù›”™+
+nsquid:CommentedOutCodeLine$"<This block of commented-out lines of code should be removed.(µþøùÿÿÿÿ8ÉÿÌ²›+
