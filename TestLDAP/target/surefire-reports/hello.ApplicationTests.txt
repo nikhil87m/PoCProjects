@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: hello.ApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 4.725 sec <<< FAILURE! - in hello.ApplicationTests
+loginWithValidUserThenAuthenticated(hello.ApplicationTests)  Time elapsed: 0.022 sec  <<< FAILURE!
+java.lang.AssertionError: Authentication should not be null
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:35)
+	at org.springframework.test.util.AssertionErrors.assertTrue(AssertionErrors.java:65)
+	at org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers$AuthenticatedMatcher.match(SecurityMockMvcResultMatchers.java:98)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:171)
+	at hello.ApplicationTests.loginWithValidUserThenAuthenticated(ApplicationTests.java:48)
+
