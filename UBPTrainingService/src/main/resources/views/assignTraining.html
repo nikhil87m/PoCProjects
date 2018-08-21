@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<head>
+   <meta charset="UTF-8">
+   <!--  <title></title> -->
+    
+    
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+	 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  
+<script>
+  //var employee
+   // $('select[name="emp"]').on('change', function() {
+$(document).ready(function(){
+	//Uttam -- method on load first time
+	
+	//alert(date);
+        var empId = $(this).val();
+		//alert(empId);
+        $.ajax({
+            type: "GET",
+			headers: { 'Access-Control-Allow-Origin': '*',},
+            url: "http://localhost:8080/UBP/getEmployeeDetails", //Need to change accoridng to webservice call 192.168.43.52 9.204.109.171
+            //data: {empId : empId },
+            success: function (data) {
+			console.log(data);
+			for (var item in data) {
+            // log key , value
+            console.log(item, data[item]);
+        }
+		
+		//populate dropdown
+		
+		
+		var ddlCustomers = $("#emp");
+           for (var item in data) {
+                var option = $("<option />");
+ 
+                //Set Customer Name in Text part.
+                option.html(data[item]);
+ 
+                //Set Customer CustomerId in Value part.
+                option.val(item);
+ 
+                //Add the Option element to DropDownList.
+                ddlCustomers.append(option);
+            };
+		
+		
+		
+			
+			//console.log(data.response);
+                       // $('select[name="emp"]').html(data.response);
+            }
+        });
+   // });
+    
+	
+	  
+
+	  // uttam - submit of form
+	  $("#empTrainingForm").submit(function(e) {
+		var Systemdate=$.datepicker.formatDate('mm/dd/yy', new Date());
+		var expectDateString = $("#expectedCompletionDate").val()
+		var expectedDateinDateFormate=$.datepicker.formatDate('mm/dd/yy', new Date(expectDateString));
+		
+		//alert("Systemdate  "+Systemdate+" expectedDateinDateFormate  "+expectedDateinDateFormate);
+			//alert();
+			
+			if(Date.parse(Systemdate) > Date.parse(expectedDateinDateFormate)){
+   //alert("Invalid Date Range");
+   //e.preventDefault();
+   $('#expectedDateLower').html('<center><p style="color:red">Expected completion date should be higher than todays date.</p></center>');
+   return false;
+}
+else{
+ 
+   //alert("Valid date Range");
+}
+			
+			
+			
+			
+			
+		// PREPARE FORM DATA
+	    	var formData = {
+	    		emp : $("#emp").val(),
+	    		type :  $("#type").val(),
+	    		training :  $("#training").val(),
+	    		isRequired :  $('input:radio[name=isRequired]:checked').val(),
+				isExternal :  $('input:radio[name=isExternal]:checked').val(),
+	    		status :  $("#status").val(),
+				expectedCompletionDate :  $("#expectedCompletionDate").val(),
+	    		remark :  $("#remark").val()
+	    	}
+	    	//alert("data"+JSON.stringify(formData)); 
+		  $.ajax({
+		      type: 'POST',
+			  headers: { 'Access-Control-Allow-Origin': '*',},
+			  url: 'http://localhost:8080/UBP/submitTrainingDetails',
+		      dataType: 'json', 
+		      async : false,
+			  contentType: 'application/json; charset=utf-8',
+		      data: JSON.stringify(formData),
+
+		      beforeSend: function() {
+	              //  alert("sending");
+	            },
+	            error: function() {
+				isTrainingSubmitted = false;
+	                alert('Error');
+	            },
+		      success: function (data) {
+			  // $('#message').html('<center><p style="color:green">Thank you for your order.</p></center>');
+			  
+		        alert("Training data assigned successfully");
+				// window.open("https://www.w3schools.com","_self");
+		      }
+		    });
+			
+			//window.open("https://www.w3schools.com","_self");
+	    });
+	
+	
+	
+	  // uttam -- method on change fo training type
+	  $("#type").change(function() {
+			//alert("function called");
+		var trainingType = 	$( "#type" ).val();
+		var pmpid_empid = 	$("#emp option:selected"). val();
+		//alert("pmpid_empid "+pmpid_empid);
+		var listBox = document.getElementById("training");
+        listBox.options.length = 0;
+			 $.ajax({
+			        type: "GET",
+					headers: { 'Access-Control-Allow-Origin': '*',},
+			        url: 'http://localhost:8080/UBP/trainingType/'+trainingType+'/'+pmpid_empid,    //192.168.43.52 9.204.109.171
+			        //data: $('#empTrainingForm').serialize(),
+			        success: function (data) {
+			               console.log(data);
+			for (var item in data) {
+            // log key , value
+            console.log(item, data[item]);
+        }
+		$("#training").val("");
+		//populate dropdown
+		var ddlCustomers1 = $("#training");
+           for (var item in data) {
+                var option = $("<option />");
+ 
+                //Set Customer Name in Text part.
+                option.html(data[item]);
+ 
+                //Set Customer CustomerId in Value part.
+                option.val(item);
+ 
+                //Add the Option element to DropDownList.
+                ddlCustomers1.append(option);
+            };
+		
+		
+		
+		
+			        }
+			      });
+			    });
+     
+// when manager/pmo changed his mind to assign some else other than previously selected emp from dropdown	-- Uttam
+$("#emp").change(function() {
+			//alert("function called");
+		var listBox = document.getElementById("training");
+        listBox.options.length = 0;
+		
+		$("#type").prop("selectedIndex", 0);
+	  
+	  });
+	 /*  $( "#expectedCompletionDate" ).datepicker({
+    showOn: "button",
+    buttonImage: "../image/date.jpg",
+    buttonImageOnly: true,
+    buttonText: "Choose",
+    minDate: "-3M",
+    maxDate: "+1M",
+    showAnim: "fade",
+    dateFormat: "mm/dd/yy"
+}); */
+
+//dd mm, yy
+
+});    
+
+function populateEmployee(){
+	var empRole ="${empRole}";
+	var empId= '1';
+	//alert("populateEmployee");
+	
+	if(empRole == 'Employee'){
+	alert("employeerole");
+		if(empId != null) {
+	        $("#emp").val(empId);
+	    }		
+		document.getElementById("emp").disabled = true;
+		
+		
+	}else{
+		document.getElementById("emp").disabled = false;
+	}
+
+}
+
+
+
+   /*  function validateForm() {
+        var type = document.forms["trainingForm"]["type"].value;
+        var courseId = document.forms["trainingForm"]["courseId"].value;
+        var desc = document.forms["trainingForm"]["desc"].value;
+        var sequence = document.forms["trainingForm"]["sequence"].value;
+        if (type == "Select") {
+            alert("Type must be selected");
+            return false;
+        }else if (courseId == "") {
+            alert("Course ID must be filled");
+            return false;
+        }else if (desc == "") {
+            alert("Description must be filled");
+            return false;
+        }else if (sequence == "") {
+            alert("sequence must be filled");
+            return false;
+        }else{
+        	document.getElementById("trainingForm").submit();
+        }
+    }  */
+    </script>
+	
+	
+	
+	</script>
+	
+	<!-- <style>
+.ui-datepicker {
+	width: 17em;
+	padding: .2em .2em 0;
+	display: none;
+    background:#846733;  
+}
+
+.ui-datepicker-trigger {
+    position: absolute;
+    width: 20px;
+}
+
+.ui-datepicker .ui-datepicker-title {
+	margin: 0 2.3em;
+	line-height: 1.8em;
+	text-align: center;
+    color:#FFFFFF;
+    background:#846733;  
+}
+.ui-datepicker table {
+	width: 100%;
+	font-size: .7em;
+	border-collapse: collapse;
+    font-family:verdana;
+	margin: 0 0 .4em;
+    color:#000000;
+    background:#FDF8E4;    
+}
+.ui-datepicker td {
+
+	border: 0;
+	padding: 1px;
+
+    
+}
+.ui-datepicker td span,
+.ui-datepicker td a {
+	display: block;
+	padding: .8em;
+	text-align: right;
+	text-decoration: none;
+}
+</style>
+	 -->
+	
+	
+</head>
+<body  onload="populateEmployee()">
+    <h1 align="center">Employee - Training Details</h1>
+
+
+    <form   method="post" name="empTrainingForm" id="empTrainingForm">
+   <div id="message"></div>
+   <div id="expectedDateLower"></div>
+   <table align="center">
+  <tr>
+    <th></th>
+    <th></th>
+  </tr>
+   <tr>
+    <td> <label for="emp">Employee Name : </label></td>
+    <td> <select  id="emp" required>
+    	<option value="">Select</option>
+         <!--	<option value="Select">Select</option>
+  			<option value="1">Shubhada</option>
+  			<option value="2">Uttam</option>
+  			<option value="3">Shailesh</option> -->
+		</select></td>
+  </tr>
+     
+    <tr>
+    <td> <label for="type">Training Type:</label></td>
+    <td><select id="type" required >
+         	<option value="">Select</option>
+  			<option value="Domain">Domain</option>
+  			<option value="Technical">Technical</option>
+  			<option value="Soft Skills">Soft Skills</option>
+		</select></td>
+    </tr>  
+    
+    <tr>
+    <td><label for="training">Training List: </label></td>
+    <td><select multiple id="training" required>
+  			<!--<option value="B1">Banking Collaboration Hub</option>
+  			<option value="B2">Banking Jumpstart</option>
+  			<option value="B3">Banking Industry Overview for Global Delivery</option> -->
+		</select></td>
+    </tr>  
+           
+         
+    <tr>
+    <td><label for="isRequired">IsRequired: </label></td>
+    <td><input type="radio" name="isRequired" value="Y"> Y
+    <input type="radio" name="isRequired" value="N" checked> N</td>
+    </tr> 
+    
+	<tr>
+    <td><label for="isExternal">IsExternal: </label></td>
+    <td><input type="radio" name="isExternal" value="Y" > Y
+    <input type="radio" name="isExternal" value="N" checked> N</td>
+    </tr> 
+         
+    <tr>
+    <td><label for="status">Status: </label></td>
+    <td><select id="status">
+         	<option value="notCompleted">Not Completed</option>
+  			<option value="inProgress">In Progress</option>
+			<option value="completed">Completed</option>
+		</select></td>
+    </tr> 
+	
+	<tr>
+    <td><label for="remark">Expected Completion Date: </label></td>
+    <td><input type="date" id="expectedCompletionDate" required></td>
+	 
+    </tr>
+    
+    <tr>
+    <td><label for="remark">Remark: </label></td>
+    <td><textarea cols="50" rows="3" maxlength="200"  id="remark"></textarea></td>
+    </tr> 
+ 
+    <tr>
+        <td></td>
+        <td><input type="submit" name="submit" value="Submit"><input type="reset" name="cancel" value="Cancel"></td>
+     </tr>
+    </table> 
+    </form>
+</body>
+</html>

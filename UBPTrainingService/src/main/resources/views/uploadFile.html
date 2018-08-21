@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload File</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $("#uploadbutton").click(function () {
+        	//alert("inside upload file");
+            var file = $("#file").val();
+           // alert("File:"+file);
+			
+            var form = $('#fileUploadForm')[0];
+
+    		// Create an FormData object 
+            var data = new FormData(form);
+    		//alert(data);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: "http://localhost:8080/UBP/uploadFile",
+                async : false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                headers: { 'Access-Control-Allow-Origin': '*'},
+			     
+                //enctype: 'multipart/form-data; charset=utf-8',
+                
+			   // contentType: 'multipart/form-data; charset=utf-8', 
+                data: data,
+               /*  {
+                    //file: file
+                	data
+                }, */
+                success: function () {
+                    alert("Data Uploaded Successfully.");
+                    window.location.reload(true); 
+                }
+            });
+        });
+    });
+    </script>
+</head>
+<body >
+ <h1 align="center">Upload EXCEL File </h1>
+  <form  method="post" name="fileUploadForm" id="fileUploadForm">
+<table align="center">
+ <tr>
+    <th></th>
+    <th></th>
+ </tr>
+<tr>
+<td><label for="file">File : </label></td>
+<td><input type="file" id="file" name="file" size="50"/><td>
+</tr>
+
+<tr>
+<td></td>
+<td><input id="uploadbutton" type="button" value="Upload"/></td>
+</tr>
+
+</table>
+</form>
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <!--  <title></title> -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    
+    $(document).ready(function(){
+    	//alert("hi");
+    		
+    			$("#addtrainingForm").submit(function() {
+    			/* 	alert("in submit");
+    				var type = $("#type").val();
+    				alert(type);
+    		        var courseId = $("#courseId").val();
+    		        var desc = $("#desc").val();
+    		        var name = $("#name").val();
+    		        var sequence =  $("#sequence").val();
+    		        if (type == "Select") {
+    		            alert("Type must be selected");
+    		            return false;
+    		        }else if (courseId == "") {
+    		            alert("Course ID must be filled");
+    		            return false;
+    		        }else if (name == "") {
+    		            alert("Name must be filled");
+    		            return false;
+    		        }
+    		        else if (sequence == "") {
+    		            alert("sequence must be filled");
+    		            return false;
+    		        }else{
+    		        	 */
+    		        
+    				//  alert("in post");
+
+    				// PREPARE FORM DATA
+    			    	var formData = {
+    			    		courseType :  $("#type").val(),
+    			    		courseId :  $("#courseId").val(),
+    			    		sequence :  $("#sequence").val(),
+    			    	 	remark :  $("#remark").val(),
+    			    		courseName :  $("#name").val()
+    			    		 
+    			    	}
+    			    	//alert("data"+JSON.stringify(formData)); 
+    				  $.ajax({
+    				      url: 'http://localhost:8080/UBP/addTrainingDetails',
+    				      type: 'POST',
+    				      dataType: 'json', 
+    				      async : false,
+    				      contentType: 'application/json; charset=utf-8', 
+    				      headers: { 'Access-Control-Allow-Origin': '*',},
+    				      data: JSON.stringify(formData),
+
+    				      /* beforeSend: function() {
+    			                alert("sending");
+    			            }, */
+    			            error: function (xhr,textStatus,errorThrown) { alert(textStatus+':'+errorThrown); },
+    				      success: function (data) {
+    				         alert("Record created successfully!");
+    				      }
+    				    });
+    		      //  }//end of else
+    			  });
+ });
+			   			
+            
+            
+    
+    </script>
+</head>
+<body>
+    <h1 align="center">Add Training Details</h1>
+
+
+    <form  method="post" name="addtrainingForm" id="addtrainingForm">
+   
+   <table align="center">
+  <tr>
+    <th></th>
+    <th></th>
+  </tr>
+   <tr>
+    <td> <label for="type">Type : </label></td>
+    <td> <select id="type" required>
+         	<option value="">Select</option>
+  			<option value="Domain">Domain</option>
+  			<option value="Technical">Technical</option>
+  			<option value="Soft Skills">Soft Skills</option>
+		</select></td>
+   <!--  
+    <td><label for="desc">Description: </label></td>
+    <td><label for="sequence">Sequence: </label></td> -->
+  </tr>
+     
+    <tr>
+    <td><label for="name">Course Name: </label></td>
+    <td><input type="text" name="name" id="name" size="50" required></td>
+    </tr> 
+        
+     
+    <tr>
+    <td> <label for="courseId">Course ID:</label></td>
+    <td><input type="text" name="courseId" id="courseId" size="25" ></td>
+    <!-- <td><input type="text" name="sequence" id="sequence" ></td> -->
+    </tr>  
+    
+   
+         
+    <tr>
+    <td><label for="sequence">Sequence: </label></td>
+    <td><input type="text" name="sequence" id="sequence" size="25" ></td>
+    </tr> 
+    
+         
+    <tr>
+    <td><label for="desc">Remarks: </label></td>
+    <td><textarea cols="50" rows="3" maxlength="200"  id="remark"></textarea></td>
+    </tr> 
+    <tr>
+        <td></td>
+        <td><input type="submit" name="submit" value="Submit"><input type="reset" name="cancel" value="Cancel"></td>
+     </tr>
+    </table> 
+    </form>
+</body>
+</html>

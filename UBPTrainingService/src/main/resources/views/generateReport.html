@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Report</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+   /*  $(document).ready(function () {
+        $("#downloadbutton").click(function () {
+        	alert("inside download file");
+			
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8080/UBP/generateReport",
+                async : false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                //enctype: 'multipart/form-data; charset=utf-8',
+                
+                success: function (data) {
+                alert("hi");
+                    alert("Report Generated Successfully at:"+data.data);
+                    window.location.reload(true); 
+                }
+            });
+        });
+    }); */
+    </script>
+</head>
+<body >
+ <h1 align="center">Download Employee Training Status Report </h1>
+  <form  name="fileUploadForm" id="fileUploadForm">
+<table align="center">
+ <tr>
+    <th></th>
+    <th></th>
+ </tr>
+
+
+<tr>
+<td></td>
+<td><a href="http://localhost:8080/UBP/generateReport">Generate Report</a>
+</td>
+</tr>
+
+</table>
+</form>
+</body>
+
+</html>
